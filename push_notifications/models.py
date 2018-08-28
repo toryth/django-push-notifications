@@ -93,7 +93,11 @@ class GCMDevice(Device):
 		verbose_name=_("Device ID"), blank=True, null=True, db_index=True,
 		help_text=_("ANDROID_ID / TelephonyManager.getDeviceId() (always as hex)")
 	)
-	registration_id = models.TextField(verbose_name=_("Registration ID"))
+	registration_id = models.CharField(
+		max_length=255,
+		verbose_name=_("Registration ID"),
+		db_index=True,
+	)
 	cloud_message_type = models.CharField(
 		verbose_name=_("Cloud Message Type"), max_length=3,
 		choices=CLOUD_MESSAGE_TYPES, default="GCM",
